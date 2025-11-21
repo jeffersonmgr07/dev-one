@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Portafolio | Tu Nombre</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portafolio de proyectos en GitHub de Tu Nombre" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --card-bg: #111827;
+      --primary: #38bdf8;
+      --primary-soft: rgba(56, 189, 248, 0.12);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --radius-lg: 18px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.45);
+      --transition-fast: 180ms ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #1e293b 0, #020617 45%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 18px 56px;
+    }
+
+    /* Header */
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 36px;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-circle {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0%, #38bdf8, #0ea5e9 45%, #0369a1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: white;
+      box-shadow: 0 12px 30px rgba(56, 189, 248, 0.5);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .brand-text span:first-child {
+      font-weight: 600;
+      font-size: 0.98rem;
+    }
+
+    .brand-text span:last-child {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    nav {
+      display: flex;
+      gap: 12px;
+      font-size: 0.85rem;
+    }
+
+    nav a {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--muted);
+      transition: background var(--transition-fast), color var(--transition-fast), border var(--transition-fast), transform var(--transition-fast);
+      cursor: pointer;
+    }
+
+    nav a:hover {
+      background: rgba(15, 23, 42, 0.85);
+      color: var(--text);
+      border-color: #1f2937;
+      transform: translateY(-1px);
+    }
+
+    nav a.btn-primary {
+      border-color: rgba(56, 189, 248, 0.4);
+      background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+      color: #0b1120;
+      font-weight: 600;
+      box-shadow: 0 12px 30px rgba(56, 189, 248, 0.6);
+    }
+
+    nav a.btn-primary:hover {
+      border-color: transparent;
+      background: linear-gradient(135deg, #06b6d4, #38bdf8);
+      transform: translateY(-1px) scale(1.01);
+    }
+
+    /* Hero */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 2.4vw + 1.2rem, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      margin-bottom: 12px;
+    }
+
+    .hero-title span.highlight {
+      background: linear-gradient(120deg, #22d3ee, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      color: var(--muted);
+      font-size: 0.96rem;
+      max-width: 520px;
+      margin-bottom: 18px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.75rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), border var(--transition-fast);
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: radial-gradient(circle at 0 0, #22d3ee, #0ea5e9 50%, #0284c7 100%);
+      color: #0b1120;
+      font-weight: 600;
+      box-shadow: 0 14px 40px rgba(56, 189, 248, 0.7);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 20px 55px rgba(56, 189, 248, 0.9);
+    }
+
+    .btn-ghost {
+      border-color: #1e293b;
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.75);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .btn span.icon {
+      font-size: 1rem;
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    .hero-note strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* Hero right card */
+
+    .hero-card {
+      background: radial-gradient(circle at top, #020617 0, #020617 40%, #000 120%);
+      border-radius: 22px;
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(15, 23, 42, 0.95);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      opacity: 0.18;
+      background:
+        radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.45), transparent 55%),
+        radial-gradient(circle at 100% 0, rgba(129, 140, 248, 0.45), transparent 55%);
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-card-title {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.9);
+    }
+
+    .hero-card-body {
+      position: relative;
+      z-index: 1;
+    }
+
+    .code-block {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.75rem;
+      padding: 12px;
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: 14px;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      color: #e5e7eb;
+      max-height: 210px;
+      overflow: auto;
+    }
+
+    .code-line {
+      display: block;
+      white-space: nowrap;
+    }
+
+    .code-comment {
+      color: #6b7280;
+    }
+
+    .code-keyword {
+      color: #38bdf8;
+    }
+
+    .code-func {
+      color: #a5b4fc;
+    }
+
+    .code-string {
+      color: #f97316;
+    }
+
+    .repos-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 12px;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .badge {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      background: rgba(8, 47, 73, 0.7);
+      color: #e0f2fe;
+      font-size: 0.7rem;
+    }
+
+    /* Sections */
+
+    section {
+      margin-top: 52px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 18px;
+      gap: 16px;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 4px;
+      height: 20px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #22d3ee, #3b82f6);
+    }
+
+    .section-subtitle {
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    /* Cards grid */
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.92));
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(30, 64, 175, 0.4);
+      padding: 14px 14px 14px;
+      box-shadow: 0 16px 35px rgba(15, 23, 42, 0.85);
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border var(--transition-fast), background var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 50px rgba(15, 23, 42, 0.95);
+      border-color: rgba(56, 189, 248, 0.6);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 1), rgba(15, 23, 42, 0.97));
+    }
+
+    .card small {
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin: 8px 0 4px;
+    }
+
+    .card-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 4px;
+      font-size: 0.76rem;
+      color: var(--muted);
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 0.7rem;
+    }
+
+    .stars {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .stars span:first-child {
+      font-size: 0.75rem;
+    }
+
+    /* About & contact */
+
+    .about {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 22px;
+    }
+
+    .about p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .about-list {
+      list-style: none;
+      padding-left: 0;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .about-list li {
+      margin-bottom: 6px;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .about-list li::before {
+      content: "•";
+      color: #38bdf8;
+      opacity: 0.8;
+      margin-top: 2px;
+    }
+
+    .contact-card {
+      background: linear-gradient(120deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.96));
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(30, 64, 175, 0.55);
+      padding: 14px;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
+      font-size: 0.86rem;
+    }
+
+    .contact-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 8px 0;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .contact-label {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .social-links a {
+      font-size: 0.8rem;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.9);
+      transition: background var(--transition-fast), color var(--transition-fast), border var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .social-links a:hover {
+      color: var(--text);
+      border-color: rgba(56, 189, 248, 0.7);
+      background: rgba(15, 23, 42, 0.98);
+      transform: translateY(-1px);
+    }
+
+    footer {
+      margin-top: 42px;
+      border-top: 1px solid rgba(15, 23, 42, 0.9);
+      padding-top: 14px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 880px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-card {
+        order: -1;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .about {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .page {
+        padding-inline: 16px;
+      }
+
+      .grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .contact-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">
+        <div class="logo-circle">
+          <!-- Iniciales -->
+          <span>JG</span>
+        </div>
+        <div class="brand-text">
+          <span>Tu Nombre</span>
+          <span>Desarrollador Web · GitHub</span>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#contacto">Contacto</a>
+        <a
+          href="https://github.com/tu-usuario"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-primary"
+        >
+          GitHub
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div>
+          <h1 class="hero-title">
+            Hola, soy <span class="highlight">Tu Nombre</span> 👋
+          </h1>
+          <p class="hero-subtitle">
+            Desarrollador enfocado en construir interfaces modernas, limpias y rápidas.
+            Aquí encuentras una selección de mis proyectos públicos en GitHub y lo que estoy
+            construyendo actualmente.
+          </p>
+
+          <div class="hero-tags">
+            <span class="tag">Front-end</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">React</span>
+            <span class="tag">APIs</span>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#proyectos" class="btn btn-primary">
+              <span class="icon">🚀</span>
+              <span>Ver proyectos</span>
+            </a>
+            <a
+              href="https://github.com/tu-usuario?tab=repositories"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-ghost"
+            >
+              <span class="icon">📦</span>
+              <span>Todos los repos</span>
+            </a>
+          </div>
+
+          <p class="hero-note">
+            <strong>Tip:</strong> Cambia los links y textos en el archivo
+            <code>index.html</code> para adaptarlo a tu perfil.
+          </p>
+        </div>
+
+        <!-- TARJETA LADO DERECHO -->
+        <aside class="hero-card" aria-label="Resumen de actividad de GitHub">
+          <div class="hero-card-header">
+            <div>
+              <div class="hero-card-title">Actividad reciente</div>
+              <small>Ejemplo de script para listar repos</small>
+            </div>
+            <div class="status-dot" title="Disponible"></div>
+          </div>
+
+          <div class="hero-card-body">
+            <div class="code-block">
+              <span class="code-line code-comment">// Obtén tus repos vía API de GitHub</span>
+              <span class="code-line">
+                <span class="code-keyword">const</span> <span class="code-func">user</span> =
+                <span class="code-string">"tu-usuario"</span>;
+              </span>
+              <span class="code-line">
+                <span class="code-keyword">async function</span>
+                <span class="code-func">fetchRepos</span>() {
+              </span>
+              <span class="code-line">
+                &nbsp;&nbsp;<span class="code-keyword">const</span> res =
+                <span class="code-keyword">await</span> fetch(
+              </span>
+              <span class="code-line">
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">
+                  `https://api.github.com/users/${user}/repos?sort=updated`
+                </span>
+              </span>
+              <span class="code-line">&nbsp;&nbsp;);</span>
+              <span class="code-line">
+                &nbsp;&nbsp;<span class="code-keyword">return await</span> res.json();
+              </span>
+              <span class="code-line">}</span>
+              <span class="code-line">&nbsp;</span>
+              <span class="code-line">
+                <span class="code-func">fetchRepos</span>()
+                .<span class="code-func">then</span>(
+                <span class="code-keyword">data</span> =&gt; <span class="code-comment">
+                  console.log(data)
+                </span>
+                );
+              </span>
+            </div>
+
+            <div class="repos-meta">
+              <span class="badge">GitHub API v3</span>
+              <span>Actualizado hace poco ⏱️</span>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- PROYECTOS -->
+      <section id="proyectos">
+        <div class="section-header">
+          <h2 class="section-title">Proyectos destacados</h2>
+          <p class="section-subtitle">
+            Enlaza aquí tus repos más importantes o los que quieras mostrar primero.
+          </p>
+        </div>
+
+        <div class="grid">
+          <!-- PROYECTO 1 -->
+          <a
+            href="https://github.com/tu-usuario/tu-repo-1"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="card"
+          >
+            <small>Front-end · SPA</small>
+            <h3 class="card-title">Proyecto 1 — Dashboard React</h3>
+            <p class="card-desc">
+              Panel interactivo con autenticación, gráficos y consumo de API REST.
+            </p>
+
+            <div class="card-footer">
+              <span class="chip">React · Tailwind</span>
+              <div class="stars">
+                ⭐ <span>12</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- PROYECTO 2 -->
+          <a
+            href="https://github.com/tu-usuario/tu-repo-2"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="card"
+          >
+            <small>Fullstack</small>
+            <h3 class="card-title">Proyecto 2 — API de tareas</h3>
+            <p class="card-desc">
+              API para gestión de tareas con autenticación JWT y base de datos.
+            </p>
+
+            <div class="card-footer">
+              <span class="chip">Node.js · Express</span>
+              <div class="stars">
+                ⭐ <span>8</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- PROYECTO 3 -->
+          <a
+            href="https://github.com/tu-usuario/tu-repo-3"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="card"
+          >
+            <small>UI · Landing</small>
+            <h3 class="card-title">Proyecto 3 — Landing Animada</h3>
+            <p class="card-desc">
+              Página de presentación con animaciones suaves y diseño responsive.
+            </p>
+
+            <div class="card-footer">
+              <span class="chip">HTML · CSS · JS</span>
+              <div class="stars">
+                ⭐ <span>5</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- SOBRE MÍ / CONTACTO -->
+      <section id="sobre-mi">
+        <div class="section-header">
+          <h2 class="section-title">Sobre mí & contacto</h2>
+          <p class="section-subtitle">
+            Un pequeño resumen de quién eres y cómo pueden trabajar contigo.
+          </p>
+        </div>
+
+        <div class="about">
+          <div>
+            <p>
+              Soy un desarrollador web con interés en crear experiencias digitales
+              simples, rápidas y bien estructuradas. Me gusta trabajar con
+              JavaScript, React y herramientas modernas de front-end.
+            </p>
+            <p>
+              Actualmente estoy aprendiendo más sobre buenas prácticas, testing,
+              performance y arquitecturas escalables.
+            </p>
+
+            <ul class="about-list">
+              <li>Experiencia construyendo SPAs y landings responsivas.</li>
+              <li>Uso de Git y GitHub en el día a día para versionado.</li>
+              <li>Me gusta documentar y mantener el código ordenado.</li>
+            </ul>
+          </div>
+
+          <div id="contacto">
+            <div class="contact-card">
+              <div class="contact-row">
+                <div>
+                  <div class="contact-label">Disponible para:</div>
+                  <strong>Freelance / Colaboraciones / Proyectos remotos</strong>
+                </div>
+              </div>
+
+              <div class="contact-row">
+                <div>
+                  <div class="contact-label">Email</div>
+                  <a href="mailto:tu-correo@ejemplo.com">tu-correo@ejemplo.com</a>
+                </div>
+                <div>
+                  <div class="contact-label">Ubicación</div>
+                  <span>Ciudad · País</span>
+                </div>
+              </div>
+
+              <div class="contact-row">
+                <div class="contact-label">Redes</div>
+                <div class="social-links">
+                  <a
+                    href="https://github.com/tu-usuario"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    GitHub
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/tu-usuario"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    LinkedIn
+                  </a>
+                  <a
+                    href="https://tu-portafolio-o-red.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Web personal
+                  </a>
+                </div>
+              </div>
+
+              <p style="margin-top: 10px; font-size: 0.78rem; color: #9ca3af;">
+                ✦ Sugerencia: usa esta tarjeta para que te contacten fácilmente desde
+                tu landing de GitHub.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© <span id="year"></span> Tu Nombre · Construido con HTML + CSS puro.</span>
+      <span>Repo de este sitio: <a href="https://github.com/tu-usuario/tu-repo-landing" target="_blank" rel="noopener noreferrer">ver en GitHub</a></span>
+    </footer>
+  </div>
+
+  <script>
+    // Año automático en el footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Scroll suave para los enlaces internos
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        const targetId = this.getAttribute("href").substring(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          e.preventDefault();
+          window.scrollTo({
+            top: target.offsetTop - 20,
+            behavior: "smooth",
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
