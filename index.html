@@ -146,6 +146,67 @@
       border: 1px solid rgba(148,163,184,0.25);
     }
 
+      /* === RESPONSIVE MOBILE === */
+    @media (max-width: 880px) {
+      .page {
+        padding: 16px 14px 40px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      nav {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .hero > div {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-title {
+        font-size: 1.7rem;
+      }
+
+      .hero {
+        gap: 16px;
+      }
+
+      .hero div[style*="display:flex; gap:12px;"] {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav a {
+        padding-inline: 10px;
+        font-size: 0.85rem;
+      }
+
+      .card {
+        padding: 14px;
+      }
+
+      .contact-card {
+        padding: 14px;
+      }
+    }
+
   </style>
 </head>
 
